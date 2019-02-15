@@ -1,0 +1,93 @@
+import java.io.*;
+import java.util.*;
+class Raman{
+    int number;
+    public Raman(int number){
+        this.number=number;
+    }
+    public int getNumber(){
+        return number;
+    }
+    public String toString(){
+        return this.number+"";
+    }
+    
+}
+class Rlist{
+    int last;
+    Raman []arr;
+    int size;
+    int c;
+    public Rlist(Raman []arr,int last,int size){
+        this.arr=arr;
+        this.last=last;
+        this.size=size;
+        c=0;
+    }
+    public boolean insert(Raman number){
+        boolean response=false;
+        c++;
+        if(last<size-1){
+                       
+            for(int i=0;i<size;i++){
+                
+                if(arr[i]!=null && arr[i].getNumber()==number.getNumber()){
+                    continue; //to avoid repeatition
+                }
+                else{
+                    last++;                    
+                    arr[last]=number;
+                    System.out.println("Dairy Milk");
+                    response=true;
+                }
+            }
+        }
+        
+        return response;
+        
+    }
+    public void display(){
+        for(int i=0;i<=last;i++){
+            System.out.print(arr[i]);
+            if(i<last){
+                System.out.print(",");
+            }
+            
+        }
+        System.out.println(c); //this too has some problem
+    }
+} 
+
+public class Solution {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+    Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();      
+        
+        
+        Raman []arr=new Raman[n];
+        int last=-1;
+        Rlist xyz=new Rlist(arr,last,n);
+        
+        
+        while(true){
+          int i=sc.nextInt();    //it takes only 12 as input and fills the list with it,thats the problem.        
+            boolean s;             
+            Raman obj=new Raman(i);      
+            s=xyz.insert(obj);                  
+            
+            
+            if(!s){
+                System.out.println("list is full");
+                break;                
+            }
+        }
+        xyz.display(); 
+            
+        
+            
+        
+        
+    }
+}
